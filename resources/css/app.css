@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Tailwind otomatis memindai file Blade di resources/views */
+@source "../views";
+
+/* ==========================================================================
+   Tivi Internet — tema biru laut & putih awan (Tailwind CSS v4)
+   ========================================================================== */
+@theme {
+    --font-sans: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+    /* Biru laut */
+    --color-sea-950: #04243f;
+    --color-sea-900: #06335a;
+    --color-sea-800: #08426f;
+    --color-sea-700: #0a4f82;
+    --color-sea-600: #0c629f;
+
+    /* Putih awan */
+    --color-cloud:   #f6fafd;
+    --color-cloud-2: #eaf4fb;
+
+    --animate-pulse-ring: pulse-ring 2.4s infinite;
+    --animate-pop-in: pop-in .2s ease-out;
+}
+
+@keyframes pulse-ring {
+    0%   { box-shadow: 0 10px 26px -6px rgb(37 211 102 / .65), 0 0 0 0 rgb(37 211 102 / .45); }
+    70%  { box-shadow: 0 10px 26px -6px rgb(37 211 102 / .65), 0 0 0 16px rgb(37 211 102 / 0); }
+    100% { box-shadow: 0 10px 26px -6px rgb(37 211 102 / .65), 0 0 0 0 rgb(37 211 102 / 0); }
+}
+@keyframes pop-in {
+    from { opacity: 0; transform: translateY(10px) scale(.97); }
+    to   { opacity: 1; transform: none; }
+}
+
+@layer base {
+    html { scroll-behavior: smooth; }
+    body { @apply bg-cloud text-slate-800 antialiased; }
+    h1, h2, h3, h4 { @apply font-extrabold tracking-tight text-sea-900; }
+}
+
+@layer components {
+    .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+    .section { @apply py-14 lg:py-20; }
+    .section-tint { background: linear-gradient(180deg, var(--color-cloud) 0%, var(--color-cloud-2) 100%); }
+    .eyebrow { @apply mb-2 inline-block text-xs font-bold uppercase tracking-[.12em] text-sky-500; }
+    .section-title { @apply text-2xl font-extrabold sm:text-3xl lg:text-4xl; }
+    .muted { @apply text-slate-500; }
+
+    /* Tombol */
+    .btn { @apply inline-flex cursor-pointer items-center justify-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-400/40 disabled:opacity-60; }
+    .btn-lg { @apply px-7 py-3.5 text-base; }
+    .btn-primary { @apply bg-sea-700 text-white hover:bg-sea-900; }
+    .btn-sky { @apply bg-sky-300 text-sea-950 hover:bg-white; }
+    .btn-outline { @apply border border-sea-700 text-sea-700 hover:bg-sea-700 hover:text-white; }
+    .btn-outline-light { @apply border border-white/60 text-white hover:bg-white/15; }
+    .btn-wa { @apply bg-[#25d366] text-white hover:bg-[#1ebe5b]; }
+    .btn-ghost { @apply text-slate-500 hover:text-sea-900; }
+
+    /* Kartu & ikon */
+    .card-soft { @apply rounded-2xl border border-sky-100 bg-white shadow-sm; }
+    .card-hover { @apply transition duration-200 hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl hover:shadow-sea-700/20; }
+    .icon-tile { @apply inline-flex size-14 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-sea-700 to-sky-500 text-2xl text-white; }
+    .icon-tile-soft { @apply bg-sky-100 bg-none text-sea-700; }
+    .step-num { @apply inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-sea-700 to-sky-500 font-extrabold text-white; }
+
+    /* Formulir */
+    .label { @apply mb-1.5 block text-sm font-semibold text-sea-900; }
+    .field { @apply w-full rounded-xl border border-sky-200 bg-white px-3.5 py-2.5 text-sm text-slate-800 placeholder:text-slate-400 focus:border-sky-500 focus:outline-none focus:ring-4 focus:ring-sky-400/25; }
+    .field-error { @apply border-red-400 focus:border-red-500 focus:ring-red-300/30; }
+    .error-text { @apply mt-1 text-xs text-red-600; }
+
+    /* Popup (<dialog>) */
+    .modal { @apply m-auto max-h-[92vh] w-[calc(100%-1.5rem)] max-w-lg overflow-hidden rounded-3xl border-0 bg-white p-0 text-slate-800 shadow-2xl open:flex open:flex-col open:animate-pop-in backdrop:bg-sea-950/60 backdrop:backdrop-blur-sm; }
+    .modal-hero { background: radial-gradient(400px 160px at 100% 0%, rgb(143 211 244 / .45), transparent 60%), linear-gradient(135deg, var(--color-sea-900), var(--color-sea-700)); @apply relative px-6 py-6 text-white; }
+
+    /* Hero & awan */
+    .hero-bg { background: radial-gradient(900px 400px at 85% -10%, rgb(143 211 244 / .45), transparent 60%), linear-gradient(135deg, var(--color-sea-950) 0%, var(--color-sea-700) 55%, var(--color-sky-500) 130%); }
+    .page-bg { background: linear-gradient(135deg, var(--color-sea-900), var(--color-sea-700) 60%, var(--color-sky-500) 140%); }
+    .cloud { @apply absolute rounded-full bg-white/15 blur-[1px]; }
+    .cloud::before, .cloud::after { content: ""; @apply absolute rounded-full bg-inherit; }
+    .cloud-1 { width: 170px; height: 46px; top: 14%; left: 6%; }
+    .cloud-1::before { width: 70px; height: 70px; top: -32px; left: 22px; }
+    .cloud-1::after  { width: 52px; height: 52px; top: -22px; left: 82px; }
+    .cloud-2 { width: 120px; height: 34px; top: 62%; left: 44%; }
+    .cloud-2::before { width: 50px; height: 50px; top: -24px; left: 16px; }
+    .cloud-2::after  { width: 38px; height: 38px; top: -16px; left: 56px; }
+    .cloud-3 { width: 200px; height: 52px; top: 10%; right: 4%; }
+    .cloud-3::before { width: 80px; height: 80px; top: -38px; left: 28px; }
+    .cloud-3::after  { width: 60px; height: 60px; top: -26px; left: 100px; }
+
+    /* Daftar paket: 5 kartu rata tengah */
+    .pkg-grid { @apply flex flex-wrap justify-center gap-5; }
+    .pkg-grid > * { @apply w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-13.4px)] xl:w-[calc(20%-16px)]; }
+}
